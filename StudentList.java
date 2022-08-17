@@ -4,12 +4,12 @@ import java.io.*;
         import java.util.*;
 public class StudentList {
     public static void main(String[] args) {
-        if(args.length==0 || args.length!=1){
+        if( args[0].length() <=1){
             System.out.println(Constant.WrongInput);
 
         }
         else if (args[0].equals(Constant.ShowAll)) {
-            System.out.println(Constant.AddData);
+            System.out.println(Constant.LoadDataMessage);
             try {
                 String[] names = getStrings();
                 for (String name : names) {
@@ -17,24 +17,24 @@ public class StudentList {
                 }
             }
             catch (Exception e) {
+                System.out.println(Constant.FailureMessage);
             }
-            System.out.println(Constant.LoadData);
+            System.out.println(Constant.DataLoadMessage);
         }
         else if (args[0].equals(Constant.ShowRandom)) {
-            System.out.println(Constant.AddData);
+            System.out.println(Constant.LoadDataMessage);
             try {
                 String[] names = getStrings();
-                //int length = names.length;
                 Random random = new Random();
-               // int nextInt = random.nextInt(length);
                 System.out.println(names[random.nextInt(names.length)]);
             }
             catch (Exception e) {
+                System.out.println(Constant.FailureMessage);
             }
-            System.out.println(Constant.LoadData);
+            System.out.println(Constant.DataLoadMessage);
         }
-        else if (args[0].contains(Constant.AddEntry)) {
-            System.out.println(Constant.AddData);
+        else if (args[0].contains(Constant.AddStudent)) {
+            System.out.println(Constant.LoadDataMessage);
 
             try {
                 BufferedWriter writer = new BufferedWriter(
@@ -47,28 +47,31 @@ public class StudentList {
                 writer.close();
             }
             catch (Exception e) {
+                System.out.println(Constant.FailureMessage);
             }
 
-            System.out.println(Constant.LoadData);
+            System.out.println(Constant.DataLoadMessage);
         }
         else if (args[0].contains(Constant.FindEntry)) {
-            System.out.println(Constant.AddData);
+            System.out.println(Constant.LoadDataMessage);
             try {
+                int index;
                 String[] names = getStrings();
                 String substring = args[0].substring(1);
-                for (int idx = 0; idx < names.length ; idx++) {
-                    if (names[idx].equals(substring)) {
+                for (index = 0; index < names.length ; index++) {
+                    if (names[index].equals(substring)) {
                         System.out.println(Constant.SuccessMessage);
                         break;
                     }
                 }
             }
             catch (Exception e) {
+                System.out.println(Constant.FailureMessage);
             }
-            System.out.println(Constant.LoadData);
+            System.out.println(Constant.DataLoadMessage);
         }
-        else if (args[0].contains(Constant.ShowCount)) {
-            System.out.println(Constant.AddData);
+        else if (args[0].contains(Constant.StudentCount)) {
+            System.out.println(Constant.LoadDataMessage);
             try {
                 String[] names = getStrings();
                 int count = 0;
@@ -78,8 +81,9 @@ public class StudentList {
                 System.out.println(count + Constant.CountMessage);
             }
             catch (Exception e) {
+                System.out.println(Constant.FailureMessage);
             }
-            System.out.println(Constant.LoadData);
+            System.out.println(Constant.DataLoadMessage);
         }
         else{
             System.out.println(Constant.WrongInput);
